@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from '../components/Banner'
 import Categories from './Categories'
 import SpacialDishes from './SpacialDishes'
+import Testimonials from './Testimonials'
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <Banner/>
       <Categories/>
       <SpacialDishes/>
+      <Testimonials/>
     </div>
   )
 }
