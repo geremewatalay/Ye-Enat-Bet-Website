@@ -11,24 +11,24 @@ const Footer = () => {
 </p>
   </aside> 
   <nav>
-    <h6 className="footer-title">Services</h6> 
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
-  </nav> 
-  <nav>
-    <h6 className="footer-title">Company</h6> 
+    <h6 className="footer-title">Useful links</h6> 
     <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
+    <a className="link link-hover">Events</a>
+    <a className="link link-hover">Blogs</a>
+    <a className="link link-hover">FAQ</a>
   </nav> 
   <nav>
-    <h6 className="footer-title">Legal</h6> 
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
+    <h6 className="footer-title">Main Menu</h6> 
+    <a className="link link-hover">Home</a>
+    <a className="link link-hover">Offers</a>
+    <a className="link link-hover">Menus</a>
+    <a className="link link-hover">Reservation</a>
+  </nav> 
+  <nav>
+    <h6 className="footer-title">Contact Us</h6> 
+    <a className="link link-hover">geremewatalay@gmail.com</a>
+    <a className="link link-hover">+251905027162</a>
+    <a className="link link-hover">Social media</a>
   </nav>
 </footer>
 <hr />
