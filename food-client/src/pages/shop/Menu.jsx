@@ -7,8 +7,8 @@ const Menu = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [itemsPerPage] = useState(8); // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8); // Number of items to display per page
 
   useEffect(() => {
     // Fetch data from the backend
@@ -34,12 +34,14 @@ const filterItems = (category)=>{
   :menu.filter((item)=>item.category===category);
   setFilteredItems(filtered);
   setSelectedCategory(category);
+  setCurrentPage(1)
 }
 
 //Show all data function
 const showAll = ()=>{
   setFilteredItems(menu);
   setSelectedCategory('all');
+  setCurrentPage(1)
 }
 
 //  sorting based on  A-Z or Z-A,lOW-Hign pricing 
@@ -69,6 +71,12 @@ const handleSortChange = (option)=>{
   setCurrentPage(1);
 };
 
+// Pagination logic
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       {/* Menu bannner */}
@@ -96,7 +104,7 @@ const handleSortChange = (option)=>{
     {/* menu shop section */}
   <div className='section-container'>
       {/* filterig and sorting  */}
-      <div> 
+      <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8"> 
         {/* all category btns */}
         <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4  flex-wrap">
           <button onClick={showAll}
@@ -126,7 +134,7 @@ const handleSortChange = (option)=>{
 
         </div>
         {/* sorting and filtering */}
-        <div>
+        <div className="flex justify-end mb-4 rounded-sm">
           <div className="bg-black p-2">
             <FaFilter className="h-4 w-4 text-white"/>
           </div>
@@ -137,7 +145,10 @@ const handleSortChange = (option)=>{
            className = "bg-black text-white px-2 py-1 rounded-sm"
           >
           <option value="default">Default</option>
-        
+          <option value="A-Z">A-Z</option>
+          <option value="Z-A">Z-A</option>
+          <option value="low-to-high">Low to High</option>
+          <option value="high-to-low">High-to-Low</option>
           </select>
         </div>
         
@@ -145,13 +156,26 @@ const handleSortChange = (option)=>{
       {/* products card */}
       <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 ">
         {
-          filteredItems.map((item) =>(
+          currentItems.map((item) =>(
             <Cards key={item._id} item ={item}/>
           ))
         }
       </div>
-
-  </div>
+ </div>
+   {/* Pagination */}
+   <div className="flex justify-center my-8">
+        {Array.from({ length: Math.ceil(filteredItems.length / itemsPerPage) }).map((_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={`mx-1 px-3 py-1 rounded-full ${
+              currentPage === index + 1 ? "bg-green text-white" : "bg-gray-200"
+            }`}
+            >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
