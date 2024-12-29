@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Home from "../pages/Home";
 import Menu from "../pages/shop/Menu";
-// import Signup from "../components/Signup";
+import Signup from "../components/Signup";
 // import UpdateProfile from "../pages/dashboard/UpdateProfile";
 
 const router = createBrowserRouter([
@@ -23,10 +23,10 @@ const router = createBrowserRouter([
 //         element: <UpdateProfile/>
 //       }
     ],
-//   },
-//   {
-//     path: "/signup",
-//     element: <Signup/>
+  },
+  {
+    path: "/signup",
+    element: <Signup/>
   }
 ]);
 
